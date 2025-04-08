@@ -2,16 +2,25 @@ package com.adi117.demo.controller;
 
 import com.adi117.demo.model.Products;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/products")
 public class ProductController {
 
-  @GetMapping(value = "/products", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Products getProducts() {
-    return new Products("Ice Tea", 3000, 10);
+  private final List<Products> products = new ArrayList<>();
+
+  @GetMapping
+  public List<Products> getProducts() {
+    return products;
+  }
+
+  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  public Products addProduct(@RequestBody Products product) {
+    products.add(product);
+    return product;
   }
 }

@@ -1,6 +1,7 @@
 package com.adi117.demo.controller;
 
 import com.adi117.demo.model.Products;
+import com.adi117.demo.service.ProductService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,16 +12,19 @@ import java.util.List;
 @RequestMapping("/api/v1/products")
 public class ProductController {
 
-  private final List<Products> products = new ArrayList<>();
+  private final ProductService productService;
+
+  public ProductController(ProductService productService) {
+    this.productService = productService;
+  }
 
   @GetMapping
   public List<Products> getProducts() {
-    return products;
+    return productService.getProducts();
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   public Products addProduct(@RequestBody Products product) {
-    products.add(product);
-    return product;
+    return productService.addProduct(product);
   }
 }

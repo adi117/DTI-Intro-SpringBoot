@@ -1,11 +1,10 @@
-package com.adi117.demo.controller;
+package com.adi117.demo.product.controller;
 
-import com.adi117.demo.model.Products;
-import com.adi117.demo.service.ProductService;
+import com.adi117.demo.product.entity.Product;
+import com.adi117.demo.product.service.ProductService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,12 +18,12 @@ public class ProductController {
   }
 
   @GetMapping
-  public List<Products> getProducts() {
+  public List<Product> getProducts() {
     return productService.getProducts();
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  public Products addProduct(@RequestBody Products product) {
+  public Product addProduct(@RequestBody Product product) {
     return productService.addProduct(product);
   }
 }

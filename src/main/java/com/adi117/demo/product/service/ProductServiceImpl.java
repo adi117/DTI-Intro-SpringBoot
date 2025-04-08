@@ -1,6 +1,6 @@
-package com.adi117.demo.service;
+package com.adi117.demo.product.service;
 
-import com.adi117.demo.model.Products;
+import com.adi117.demo.product.entity.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,15 +9,15 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService{
 
-  private final List<Products> products = new ArrayList<>();
+  private final List<Product> products = new ArrayList<>();
 
   @Override
-  public List<Products> getProducts() {
+  public List<Product> getProducts () {
     return products;
   }
 
   @Override
-  public Products addProduct(Products product) {
+  public Product addProduct(Product product) {
     products.add(product);
     return product;
   }
